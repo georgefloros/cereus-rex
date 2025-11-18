@@ -2,7 +2,7 @@
 use crate::mcp::types::{SearchRequest, SearchResult};
 use qdrant_client::{
     Qdrant,
-    qdrant::{CreateCollection, VectorParams, HnswConfigDiff},
+    qdrant::{CreateCollection, VectorParams, HnswConfigDiff, Distance},
 };
 use serde_json::Value;
 use std::collections::HashMap;
@@ -62,7 +62,7 @@ impl RagClient {
                                 vectors_config: Some(
                                     VectorParams {
                                         size: 384, // Use 384 for sentence transformers
-                                        distance: 0, // Cosine distance (0 = Cosine)
+                                        distance: Distance::Cosine as i32,
                                         ..Default::default()
                                     }.into()
                                 ),
