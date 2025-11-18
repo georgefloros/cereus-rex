@@ -2,7 +2,6 @@
 use crate::rag::RagClient;
 use crate::mcp::types::{SearchRequest as McpSearchRequest, SearchResult};
 use serde::{Deserialize, Serialize};
-use std::collections::HashMap;
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct SearchRequest {

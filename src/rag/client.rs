@@ -31,11 +31,13 @@ impl RagClient {
 
     /// Initialize the Qdrant client connection
     pub async fn initialize(&mut self) -> Result<(), Box<dyn std::error::Error>> {
-        let mut client = Qdrant::from_url(&self.endpoint);
+        let mut client_builder = Qdrant::from_url(&self.endpoint);
+        // Skip server version check to avoid REST/GRPC mismatch noise
+        client_builder.check_compatibility = false;
         if let Some(api_key) = &self.api_key {
-            client = client.api_key(api_key.clone());
+            client_builder = client_builder.api_key(api_key.clone());
         }
-        let client = client.build()?;
+        let client = client_builder.build()?;
 
         // Set the client
         self.qdrant_client = Some(client);
@@ -170,7 +172,7 @@ impl RagClient {
 
 impl Default for RagClient {
     fn default() -> Self {
-        Self::new("http://localhost:6333".to_string(), None)
+        Self::new("http://localhost:6334".to_string(), None)
     }
 }
 
@@ -181,7 +183,7 @@ mod tests {
     #[tokio::test]
     async fn test_rag_client_creation() {
         let rag_client = RagClient::default();
-        assert_eq!(rag_client.endpoint, "http://localhost:6333");
+        assert_eq!(rag_client.endpoint, "http://localhost:6334");
         assert_eq!(rag_client.collections.len(), 3);
     }
 

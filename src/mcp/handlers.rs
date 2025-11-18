@@ -2,7 +2,7 @@
 use super::protocol::{McpRequest, McpResponse};
 use super::types::*;
 use std::collections::HashMap;
-use axum::async_trait;
+use async_trait::async_trait;
 use crate::{rag::client::RagClient, agents::sync::AgentCoordinator};
 use tokio::sync::RwLock;
 use std::sync::Arc;

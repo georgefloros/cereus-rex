@@ -1,7 +1,6 @@
 // src/utils/config.rs
 use config::{Config, ConfigError, Environment, File};
 use serde::Deserialize;
-use std::collections::HashMap;
 
 #[derive(Debug, Deserialize, Clone)]
 pub struct Settings {
@@ -58,7 +57,7 @@ impl Default for Settings {
                 max_connections: 100,
             },
             qdrant: QdrantConfig {
-                endpoint: "http://localhost:6333".to_string(),
+                endpoint: "http://localhost:6334".to_string(),
                 api_key: None,
                 timeout_seconds: 30,
             },
@@ -91,6 +90,6 @@ mod tests {
         // This test might fail if config files don't exist, so we'll use default
         let settings = Settings::default();
         assert_eq!(settings.server.port, 3000);
-        assert_eq!(settings.qdrant.endpoint, "http://localhost:6333");
+        assert_eq!(settings.qdrant.endpoint, "http://localhost:6334");
     }
 }

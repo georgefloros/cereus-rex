@@ -3,10 +3,9 @@ use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 use std::sync::Arc;
 use tokio::sync::RwLock;
-use tokio::io::{AsyncBufReadExt, AsyncWriteExt, BufReader};
+use tokio::io::AsyncBufReadExt;
 use futures_util::{SinkExt, StreamExt};
-use tokio_tungstenite::{accept_async, tungstenite::Message};
-use url::Url;
+use tokio_tungstenite::tungstenite::Message;
 
 use crate::rag::client::RagClient;
 use crate::tools::search::SearchTool;
@@ -98,7 +97,7 @@ impl CerebusRexMcpServer {
                 
                 // Send the response
                 let response_text = serde_json::to_string(&response)?;
-                sender.send(Message::Text(response_text)).await?;
+                sender.send(Message::Text(response_text.into())).await?;
             }
         }
         

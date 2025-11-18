@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 
 services:
   qdrant:
@@ -11,6 +11,7 @@ services:
       - qdrant_data:/qdrant_data
     environment:
       - QDRANT_API_KEY=${QDRANT_API_KEY:-}
+      - QDRANT__SERVICE__ENABLE_TLS=false
     # Health check removed due to complexity with container tools
     restart: unless-stopped
 
@@ -22,7 +23,7 @@ services:
     ports:
       - "3000:3000"
     environment:
-      - APP__QDRANT__ENDPOINT=http://qdrant:6333
+      - APP__QDRANT__ENDPOINT=http://qdrant:6334
       - APP__QDRANT__API_KEY=${QDRANT_API_KEY:-}
       - APP__SERVER__HOST=0.0.0.0
       - APP__SERVER__PORT=3000

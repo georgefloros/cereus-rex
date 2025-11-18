@@ -90,7 +90,7 @@ impl CodeContextTool {
 
 // In a real implementation, this would likely use thread-safe storage
 // For now, we'll implement a thread-safe version using Arc<Mutex<...>>
-use std::sync::{Arc, Mutex};
+use std::sync::Arc;
 use tokio::sync::RwLock;
 
 pub struct ThreadsafeCodeContextTool {

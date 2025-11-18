@@ -29,3 +29,4 @@ tokio-tungstenite = "0.28.0"
 url = "2.0"
 futures-util = "0.3"
 rmcp = { version = "0.9.0", features = ["server"] }
+async-trait = "0.1"

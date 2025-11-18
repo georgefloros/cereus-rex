@@ -5,9 +5,7 @@ mod tools;
 mod utils;
 mod mcp_server;
 
-use std::sync::Arc;
-use tokio::sync::RwLock;
-use tracing_subscriber::{self, EnvFilter};
+use tracing_subscriber::{self};
 
 use crate::{
     rag::client::RagClient,
